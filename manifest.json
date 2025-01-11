@@ -1,0 +1,9 @@
+{
+  "id": "bookmarks",
+  "name": "Bookmarks",
+  "description": "An extension to quicly open your favourite websites",
+  "creator_name": "Whiskers Apps",
+  "creator_link": "https://github.com/Whiskers-Apps",
+  "repository_link": "https://github.com/Whiskers-Apps/tigris-bookmarks",
+  "settings": []
+}
