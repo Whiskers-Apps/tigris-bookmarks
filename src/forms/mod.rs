@@ -193,7 +193,7 @@ async fn write_favicon(id: &usize, link: &str) {
 
     let favicon_request = Client::new()
         .get(format!(
-            "http://fashionable-turquoise-buzzard.faviconkit.com/{website}/256"
+            "https://favicon.is/{website}?larger=true"
         ))
         .send()
         .await;
