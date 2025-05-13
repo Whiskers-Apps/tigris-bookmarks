@@ -3,7 +3,7 @@ use std::{fs, io::Cursor, process::exit};
 use image::{ImageFormat, ImageReader};
 use regex::Regex;
 use reqwest::Client;
-use tigris_rs::features::{api::FormResultsRequest, utils::send_notification};
+use tigris_core::features::{api::FormResultsRequest, utils::send_notification};
 
 use crate::{
     bookmarks::{get_db, write_db, Bookmark, Group},
@@ -192,9 +192,7 @@ async fn write_favicon(id: &usize, link: &str) {
     let website = link.replace("https://", "").replace("http://", "");
 
     let favicon_request = Client::new()
-        .get(format!(
-            "https://favicon.is/{website}?larger=true"
-        ))
+        .get(format!("https://favicon.is/{website}?larger=true"))
         .send()
         .await;
 

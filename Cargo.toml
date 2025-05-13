@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-tigris-rs = { path = "/home/lighttigerxiv/projects/whiskers-apps/tigris-rs", features = [
+tigris-core = { path = "/home/lighttigerxiv/dev/whiskers-apps/pc/tigris-core/", features = [
     "extension",
 ] }
 sniffer-rs = "1.1.2"

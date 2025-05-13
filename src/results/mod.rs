@@ -1,13 +1,13 @@
 use std::process::exit;
 
 use sniffer_rs::sniffer::Sniffer;
-use tigris_rs::features::{
+use tigris_core::features::{
     actions::{
         Field, FieldValidation, OpenFormAction, OpenLinkAction, ResultAction, RunExtensionAction,
         SelectField, SelectFieldValue, SwitchField, TextField,
     },
-    api::{send_search_results, GetResultsRequest},
-    search::get_search_query,
+    api::{return_search_results, GetResultsRequest},
+    search::SearchQuery,
     search_results::SearchResult,
 };
 
@@ -15,7 +15,7 @@ use crate::{bookmarks::get_db, icons::get_icon_path, paths::get_favicon_path};
 
 pub fn handle_results(request: GetResultsRequest) {
     let input_text = request.search_text;
-    let search_query = get_search_query(&input_text);
+    let search_query = SearchQuery::from(&input_text);
     let keyword = search_query.keyword;
     let search_text = search_query.search_text;
     let mut results = Vec::<SearchResult>::new();
@@ -138,8 +138,7 @@ pub fn handle_results(request: GetResultsRequest) {
             results.push(delete_group_result);
         }
 
-        send_search_results(&results);
-        exit(0);
+        return_search_results(&results);
     }
 
     if let Some(keyword) = keyword {
@@ -219,8 +218,7 @@ pub fn handle_results(request: GetResultsRequest) {
             results.append(&mut edit_bookmark_results);
             results.append(&mut edit_group_results);
 
-            send_search_results(&results);
-            exit(0);
+            return_search_results(&results);
         }
     }
 
@@ -257,7 +255,5 @@ pub fn handle_results(request: GetResultsRequest) {
     results.append(&mut bookmarks);
     results.append(&mut groups);
 
-    send_search_results(&results);
-
-    exit(0);
+    return_search_results(&results);
 }

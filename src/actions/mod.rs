@@ -1,6 +1,6 @@
 use std::thread;
 
-use tigris_rs::features::api::RunActionRequest;
+use tigris_core::features::api::RunActionRequest;
 
 use crate::bookmarks::{get_db, Bookmark};
 
